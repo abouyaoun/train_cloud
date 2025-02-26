@@ -1,5 +1,5 @@
-const { DataTypes, Model } = require('sequelize')
-const db = require('./db.client.js')
+const { DataTypes, Model } = require('sequelize');
+const { sequelize } = require('./db.client'); // Assure que sequelize est bien importé
 
 class Article extends Model {}
 
@@ -20,10 +20,11 @@ Article.init(
     },
   },
   {
-    sequelize: db,
+    sequelize, // Utilisation correcte de l'instance Sequelize
     modelName: 'Article',
     tableName: 'articles',
-  },
-)
+    timestamps: false, // Désactive les colonnes `createdAt` et `updatedAt` si non nécessaires
+  }
+);
 
-module.exports = Article
+module.exports = Article;
